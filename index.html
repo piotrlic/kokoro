@@ -65,7 +65,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
   .nav-logo img { height: 32px !important; }
   .nav-logo span span { font-size: 13px !important; }
   .nav-cta { order: 2; }
-  .nav-links { order: 3; flex-basis: 100%; margin-left: 0 !important; justify-content: center; font-size: 13px !important; column-gap: 14px !important; row-gap: 6px !important; }
+  /* Do lewej, w jednej osi z logo nad nim (na tablecie justowanie zrobiłoby
+     z czterech linków cztery osobne napisy rozrzucone po całej szerokości) */
+  .nav-links { order: 3; flex-basis: 100%; margin-left: 0 !important; justify-content: flex-start; font-size: 13px !important; column-gap: 14px !important; row-gap: 6px !important; }
 }
 
 /* Telefony i wąskie tablety */
@@ -87,6 +89,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
   /* Stopka: jedna wyśrodkowana kolumna */
   footer { text-align: center; gap: 16px !important; }
   footer, footer > div, footer > span { justify-content: center !important; }
+}
+
+/* Na telefonie linki prawie wypełniają rząd, więc justowanie ładnie domyka
+   go do krawędzi logo i CTA. Powyżej robiłoby już tylko dziury. */
+@media (max-width: 480px) {
+  .nav-links { justify-content: space-between; }
 }
 
 /* Najwęższe telefony — logo + CTA muszą zmieścić się w jednym rzędzie */
