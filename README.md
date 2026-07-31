@@ -68,11 +68,31 @@ Typografia (Google Fonts):
 - treść i UI — **Work Sans** 300 / 400 / 500
 - h2 `clamp(32px, 4vw, 44px)`, h3 30 / 26px, akapity 16–17px, `line-height 1.75–1.8`
 - akapity i listy justowane (`text-align: justify; hyphens: auto`, `lang="pl"`)
+  — na telefonach justowanie wyłączone, bo w wąskiej kolumnie robi rzeki
 
 Pozostałe:
 - `border-radius: 0` w całym projekcie — świadoma decyzja, nie dodawaj zaokrągleń
-- padding sekcji: `100px 6vw` (kontakt / obszary `110px 6vw`)
+- padding sekcji: `100px 6vw` (kontakt / obszary `110px 6vw`), na telefonach `64px 5vw`
 - easing animacji: `cubic-bezier(.22,.61,.36,1)`, czas `.85s`, stagger `90ms`
+
+## Responsywność
+
+Style są inline, więc media queries w `<head>` nadpisują je przez `!important`.
+Trzy progi:
+
+| Próg | Co się zmienia |
+|---|---|
+| `≤ 900px` | nawigacja łamie się na dwa rzędy: logo + CTA „Kontakt”, linki wyśrodkowane pod spodem (`.nav-logo` / `.nav-cta` / `.nav-links` + `order`) |
+| `≤ 760px` | sekcje `64px 5vw`, siatki do jednej kolumny, koniec justowania, stopka wyśrodkowana, w nawigacji znika „ Gestalt” (`.nav-long`) |
+| `≤ 380px` | mniejsze logo, CTA i linki, żeby logo i „Kontakt” zmieściły się w jednym rzędzie |
+
+Uwagi:
+- Każda siatka wielokolumnowa ma `class="cols"` — to jej punkt zaczepienia
+  do składania w jedną kolumnę. Dodajesz nową siatkę → dodaj tę klasę.
+- `#przed-spotkaniem` ma sztywne dwie kolumny (`minmax(300px,560px) minmax(260px,380px)`),
+  potrzebuje ~590px + marginesy — bez składania wychodzi poza ekran telefonu.
+- `scroll-padding-top` (88px / 104px) trzyma nagłówki sekcji spod sticky nawigacji.
+- Sprawdzone od 320px do 1440px — bez poziomego przewijania.
 
 ## Animacja wejścia
 

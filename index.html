@@ -29,10 +29,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
     body { margin: 0; background-color: #FAF6EF; color: #33322D; font-family: 'Work Sans', sans-serif; }
     a { color: #7E8C6A; text-decoration: none; }
     a:hover { color: #657351; }
+    img { max-width: 100%; }
     ::selection { background: #EAD9BF; }
 .h1:hover{background: #657351 !important;color: #FAF6EF !important}
 .h2:hover{background: #657351 !important;color: #FAF6EF !important}
@@ -51,20 +52,66 @@ html { scroll-behavior: smooth; }
 .h15:hover{background: #E6DECF !important;color: #33322D !important}
 .h16:hover{background: #E6DECF !important}
 .h17:hover{background: #E6DECF !important}
+
+/* ── Responsywność ─────────────────────────────────────────────────────
+   Style są inline, więc nadpisania wymagają !important. */
+
+/* Nawigacja w jednym rzędzie przestaje się mieścić ok. 900px:
+   logo + CTA idą do pierwszego rzędu, linki wyśrodkowane pod spodem. */
+@media (max-width: 900px) {
+  html { scroll-padding-top: 104px; }
+  nav { padding: 12px 5vw !important; gap: 10px !important; }
+  .nav-logo { order: 1; font-size: 19px !important; gap: 10px !important; }
+  .nav-logo img { height: 32px !important; }
+  .nav-logo span span { font-size: 13px !important; }
+  .nav-cta { order: 2; }
+  .nav-links { order: 3; flex-basis: 100%; margin-left: 0 !important; justify-content: center; font-size: 13px !important; column-gap: 14px !important; row-gap: 6px !important; }
+}
+
+/* Telefony i wąskie tablety */
+@media (max-width: 760px) {
+  /* „Psychoterapia Gestalt” → „Psychoterapia”, żeby linki zmieściły się w jednym rzędzie */
+  .nav-long { display: none; }
+
+  /* Mniej oddechu w pionie, węższe marginesy boczne */
+  section { padding: 64px 5vw !important; }
+  #hero { padding: 40px 5vw 64px !important; gap: 24px !important; }
+  footer { padding: 24px 5vw !important; }
+
+  /* Siatki wielokolumnowe składają się do jednej kolumny */
+  #przed-spotkaniem, .cols { grid-template-columns: minmax(0, 1fr) !important; }
+
+  /* Justowanie robi rzeki w wąskiej kolumnie */
+  p[style*="justify"], ul[style*="justify"] { text-align: left !important; }
+
+  /* Stopka: jedna wyśrodkowana kolumna */
+  footer { text-align: center; gap: 16px !important; }
+  footer, footer > div, footer > span { justify-content: center !important; }
+}
+
+/* Najwęższe telefony — logo + CTA muszą zmieścić się w jednym rzędzie */
+@media (max-width: 380px) {
+  html { scroll-padding-top: 88px; }
+  .nav-logo { font-size: 17px !important; gap: 8px !important; }
+  .nav-logo img { height: 28px !important; }
+  .nav-logo span span { font-size: 11px !important; letter-spacing: 0.14em !important; }
+  .nav-cta { padding: 8px 14px !important; }
+  .nav-links { font-size: 12px !important; column-gap: 10px !important; }
+}
 </style>
 </head>
 <body>
 <div lang="pl" style="min-width: 320px">
 
 <nav data-screen-label="Nawigacja" style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; row-gap: 12px; gap: 20px; padding: 16px 6vw; background: #FAF6EF; border-bottom: 1px solid #E2DACB">
-  <a href="#hero" style="display: flex; align-items: center; gap: 12px; font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.06em; color: #33322D"><img src="assets/logo-mark.png" alt="" style="height: 40px; display: block"><span><span style="font-size: 15px; letter-spacing: 0.18em; color: #8A7B5F">PRZESTRZEŃ</span> Kokoro</span></a>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(12px, 1.8vw, 22px); font-size: clamp(13px, 1.4vw, 14px); letter-spacing: 0.02em">
+  <a href="#hero" class="nav-logo" style="display: flex; align-items: center; gap: 12px; font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.06em; color: #33322D"><img src="assets/logo-mark.png" alt="" style="height: 40px; display: block"><span><span style="font-size: 15px; letter-spacing: 0.18em; color: #8A7B5F">PRZESTRZEŃ</span> Kokoro</span></a>
+  <div class="nav-links" style="display: flex; flex-wrap: wrap; align-items: center; margin-left: auto; gap: clamp(12px, 1.8vw, 22px); font-size: clamp(13px, 1.4vw, 14px); letter-spacing: 0.02em">
     <a href="#o-mnie" style="color: #5C564C">O mnie</a>
-    <a href="#psychoterapia" style="color: #5C564C">Psychoterapia Gestalt</a>
+    <a href="#psychoterapia" style="color: #5C564C">Psychoterapia<span class="nav-long"> Gestalt</span></a>
     <a href="#kregi" style="color: #5C564C">Kobiece Kręgi</a>
     <a href="#mentoring" style="color: #5C564C">Mentoring</a>
-    <a href="#kontakt" style="color: #FAF6EF; background: #7E8C6A; padding: 9px 18px; letter-spacing: 0.08em; font-size: clamp(12px, 1.3vw, 13px); text-transform: uppercase; white-space: nowrap" class="h1">Kontakt</a>
   </div>
+  <a href="#kontakt" class="nav-cta h1" style="color: #FAF6EF; background: #7E8C6A; padding: 9px 18px; letter-spacing: 0.08em; font-size: clamp(12px, 1.3vw, 13px); text-transform: uppercase; white-space: nowrap">Kontakt</a>
 </nav>
 
 <header id="hero" data-screen-label="Hero" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px; padding: 70px 6vw 88px; background: #F9F0EB">
@@ -101,7 +148,7 @@ html { scroll-behavior: smooth; }
 </section>
 
 <section id="obszary" data-screen-label="Obszary pracy" style="padding: 110px 6vw; display: flex; flex-direction: column; gap: 56px; align-items: center">
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(32px, 5vw, 72px); width: 100%; max-width: 1120px">
+  <div class="cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(32px, 5vw, 72px); width: 100%; max-width: 1120px">
     <div style="display: flex; flex-direction: column; gap: 18px">
       <img src="assets/psychoterapia.jpg" alt="Cichy gabinet psychoterapii w naturalnym świetle" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block">
       <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 28px; color: #33322D">Psychoterapia Gestalt</h3>
@@ -125,7 +172,7 @@ html { scroll-behavior: smooth; }
 
 <section id="o-mnie" data-screen-label="O mnie" style="padding: 100px 6vw; display: flex; flex-direction: column; gap: 48px; align-items: center">
   <h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(32px, 4vw, 44px); color: #33322D">O mnie</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 480px)); justify-content: center; gap: clamp(28px, 4vw, 56px); max-width: 1100px; align-items: start">
+  <div class="cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 480px)); justify-content: center; gap: clamp(28px, 4vw, 56px); max-width: 1100px; align-items: start">
     <img src="assets/przed-spotkaniem.jpg" alt="Kamila Mik — z książką w leśnej altanie" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block">
     <div style="display: flex; flex-direction: column; gap: 22px">
       <p  style="margin: 0; font-weight: 300; font-size: 16px; line-height: 1.75; color: #5C564C; text-wrap: pretty; text-align: justify; hyphens: auto">Od wielu lat towarzyszę ludziom w ich rozwoju – najpierw w organizacjach, dziś również w gabinecie terapeutycznym i podczas Kobiecych Kręgów.</p>
@@ -145,7 +192,7 @@ html { scroll-behavior: smooth; }
     <p  style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.8; color: #5C564C; text-wrap: pretty; text-align: justify; hyphens: auto">Psychoterapia jest dla mnie przede wszystkim spotkaniem dwóch osób. Spotkaniem, w którym jest miejsce na rozmowę, ciszę, emocje, wątpliwości i wszystko to, z czym przychodzisz. Możemy wspólnie przyglądać się temu, co jest dla Ciebie ważne – temu, co przeżywasz, czego potrzebujesz i czego być może jeszcze nie udało Ci się nazwać.</p>
     <p  style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.8; color: #5C564C; text-wrap: pretty; text-align: justify; hyphens: auto">Pracuję w nurcie Gestalt – podejściu, które zakłada, że każdy człowiek ma w sobie potencjał do rozwoju i odnajdywania własnych odpowiedzi. Moją rolą nie jest mówić Ci, jak masz żyć, lecz towarzyszyć Ci w lepszym poznawaniu siebie.</p>
   </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 480px)); justify-content: center; gap: clamp(24px, 4vw, 48px); width: 100%; max-width: 1100px">
+  <div class="cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 480px)); justify-content: center; gap: clamp(24px, 4vw, 48px); width: 100%; max-width: 1100px">
     <img src="assets/psychoterapia.jpg" alt="Gabinet psychoterapii — Kamila w rozmowie z klientem" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block">
     <div style="background: #FAF6EF; padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; gap: 16px; justify-content: center">
       <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 30px; color: #33322D">Jak pracuję</h3>
@@ -154,7 +201,7 @@ html { scroll-behavior: smooth; }
       <p  style="margin: 0; font-weight: 300; font-size: 16px; line-height: 1.75; color: #5C564C; text-wrap: pretty; text-align: justify; hyphens: auto">Najważniejsza jest dla mnie relacja oparta na bezpieczeństwie, zaufaniu i autentycznym kontakcie. Właśnie w takiej relacji najłatwiej usłyszeć siebie i dostrzec to, co do tej pory pozostawało niewidoczne.</p>
     </div>
   </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 48px); width: 100%; max-width: 1100px">
+  <div class="cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 48px); width: 100%; max-width: 1100px">
     <div style="display: flex; flex-direction: column; gap: 14px">
       <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26px; color: #33322D">Psychoterapia może być pomocna, jeśli:</h3>
       <ul  style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-weight: 300; font-size: 16px; line-height: 1.6; color: #5C564C; text-align: justify; hyphens: auto">
@@ -244,7 +291,7 @@ html { scroll-behavior: smooth; }
       
     </div>
   </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 48px); width: 100%; max-width: 1100px">
+  <div class="cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(24px, 4vw, 48px); width: 100%; max-width: 1100px">
     <div style="display: flex; flex-direction: column; gap: 14px">
       <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26px; color: #33322D">Dla kogo są Kręgi?</h3>
       <p  style="margin: 0; font-weight: 300; font-size: 16px; line-height: 1.6; color: #5C564C; text-align: justify; hyphens: auto">Dla kobiet, które:</p>
@@ -274,7 +321,7 @@ html { scroll-behavior: smooth; }
     <p  style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.8; color: #5C564C; text-wrap: pretty; text-align: justify; hyphens: auto">Od kilkunastu lat wspieram liderów, zespoły i organizacje w budowaniu środowiska pracy opartego na zaufaniu, odpowiedzialności i partnerstwie. W mentoringu łączę wieloletnie doświadczenie zdobyte w obszarze People &amp; Culture z podejściem Gestalt i filozofią Servant Leadership.</p>
     <p  style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.8; color: #5C564C; text-wrap: pretty; text-align: justify; hyphens: auto">Podczas naszych spotkań nie szukamy gotowych rozwiązań. Zatrzymujemy się, przyglądamy sytuacji z różnych perspektyw i wspólnie szukamy kierunku, który będzie spójny z Tobą, Twoimi wartościami i wyzwaniami, przed którymi stoisz.</p>
   </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); justify-content: center; gap: clamp(28px, 4vw, 56px); width: 100%; max-width: 1000px">
+  <div class="cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); justify-content: center; gap: clamp(28px, 4vw, 56px); width: 100%; max-width: 1000px">
     <div style="display: flex; flex-direction: column; gap: 14px">
       <h3 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26px; color: #33322D">Pomagam:</h3>
       <ul  style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-weight: 300; font-size: 16px; line-height: 1.6; color: #5C564C; text-align: justify; hyphens: auto">
