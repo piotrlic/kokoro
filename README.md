@@ -27,7 +27,9 @@ assets/
   przed-spotkaniem.jpg portret z książką w sekcji „O mnie”
   psychoterapia.jpg    zdjęcie psychoterapii (sekcja + kafelek)
   mentoring.jpg        zdjęcie kafelka mentoringu
-  kregi.jpg            zdjęcie Kobiecych Kręgów (też og:image)
+  kregi.jpg            zdjęcie Kobiecych Kręgów
+  og-image.jpg         1200×630, podgląd linku w komunikatorach
+  icon-180.png         apple-touch-icon (ekran główny iOS)
 ```
 
 ## Sekcje (kolejność w pliku)
@@ -118,6 +120,10 @@ sekcji `kontakt` (linki `mailto:` / `tel:`) oraz w CTA mentoringu (`mailto:`).
   identyfikator (`AW-…` / `G-…`) i odkomentuj.
 - Brak polityki prywatności i informacji RODO — wymagane, jeśli dojdzie formularz
   kontaktowy lub analityka.
-- `og:image` wskazuje na `assets/kregi.jpg`; po wgraniu na domenę zmień na URL absolutny.
+- Podgląd linku: `assets/og-image.jpg` (1200×630, standard OG) — nagłówek wpisany
+  w całości na tle `#F8EDE9`, więc pasy dopełniające są niewidoczne. Adresy w `og:`
+  są **absolutne** (`https://przestrzenkokoro.pl/…`), bo względne bywają ignorowane.
+  Po zmianie grafiki komunikatory trzymają stary podgląd w cache — Facebook/Messenger
+  czyści się przez Sharing Debugger, Signal dopiero po jakimś czasie lub na innym urządzeniu.
 - Zdjęcia nie są zoptymalizowane (JPEG z telefonu). Warto skompresować i dodać
   `loading="lazy"` poza pierwszym ekranem.
