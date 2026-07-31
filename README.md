@@ -54,7 +54,7 @@ Paleta chłodnego kamienia i szałwii.
 | Rola | Hex |
 |---|---|
 | tło bazowe (krem) | `#FAF6EF` |
-| tło hero | `#F9F0EB` (dopasowane do tła grafiki nagłówka) |
+| tło hero | `#F8EDE9` (mediana krawędzi `naglowek.jpg` — po podmianie grafiki spróbkuj ponownie) |
 | tło sekcji przemiennych | `#EFE9DD` |
 | tło Kręgów i Kontaktu (szałwia) | `#E4E8DB` |
 | tekst główny | `#33322D` |
